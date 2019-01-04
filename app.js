@@ -13,7 +13,7 @@ var userTable = require('./db/users.js');
 var propertyTable = require('./db/property.js');
 var fetch = require('node-fetch');
 const uuidv1 = require('uuid/v1');
-
+const port = process.env.PORT || 3501;
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -375,7 +375,13 @@ app.get("/inbox/:userid", (request,response)=>{
     })
 });
 
-var server = app.listen(3501,()=>{
-    console.log("Homeaway server has started to listen at http://localhost:3501");
+var server = app.listen(port,()=>{
+    console.log(port)
+    if(port === 3501){
+        console.log("Homeaway server has started to listen at http://localhost:3501");
+    }else{
+        console.log("Homeaway server has started to listen at http://homerental-backend.herokuapp.com");
+    }
+    
 });
      
